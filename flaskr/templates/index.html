@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Hello !</h2>
+<h4>Welcome to <span>Adaptive Auth - flask-client-demo</span></h4>
+<div class="my-4">
+    <form class="form mb-4" action="/settings" method="POST">
+        <div class="form-group">
+            <label for="clientId">Current client public key</label>
+            {% if api_client %}    
+            <textarea class="form-control" id="clientId" name="clientId" rows="2">{{ api_client['public_key'] }}</textarea>
+            {% else %}
+            <textarea class="form-control" id="clientId" name="clientId" rows="2"></textarea>
+            {% endif %}
+        </div>
+        {% if api_client %}
+        <button type="submit" class="btn btn-primary mt-2">Update</button>
+        {% else %}
+        <button type="submit" class="btn btn-primary mt-2">Save</button>
+        {% endif %}
+    </form>
+
+    <h4 lcass="">Get UTC timestamp using Adaptive Authentication and TOTP token generation!</h4>
+    
+    <a href="/timestamp?token_type=self" class="btn btn-primary mt-2">Self TOTP token generation</a>
+    <span class="mx-1">&nbsp;</span>
+    <a href="/timestamp?token_type=server" class="btn btn-primary mt-2">Server TOTP token generation</a>
+    
+</div>
+{% endblock %}

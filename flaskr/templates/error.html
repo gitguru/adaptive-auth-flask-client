@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Error Occurred!</h1>
+    <div class="alert alert-danger" role="alert">
+      <b>
+        {% if error %}
+        [<span>{{ error['status'] }}</span>]
+        <span>{{ error['body'] }}</span>
+        {% endif %}
+      </b>
+    </div>
+    <a href="/" class="btn btn-primary">Back home</a>
+{% endblock %}
