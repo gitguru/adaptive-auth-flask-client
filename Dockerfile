@@ -9,5 +9,5 @@ COPY . .
 
 EXPOSE 5000
 
-# CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
-# CMD ["flask", "--app", "flaskr", "run", "--host=0.0.0.0",  "--debug"]
+RUN flask --app flaskr init-db
+# CMD ["flask", "--app", "flaskr", "run", "--host=0.0.0.0", "--debug"]

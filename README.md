@@ -104,3 +104,15 @@ docker run -it -p 5101:5000 --name flask-demo-dev --rm --volume $(pwd):/usr/src/
 flask --app flaskr init-db
 flask --app flaskr run --host=0.0.0.0 --debug
 ```
+
+## Login to AWS ECR
+```
+aws --profile {PROFILE} ecr get-login-password --regionn {REGION} | docker login --username AWS --password-stdin {ECR_URI}
+```
+
+# Build and push (demo-server) docker image to ECR
+```
+docker build --pull --no-cache --platform="linux/amd64" --provenance=false -t flask-demo:latest -f Dockerfile.k8 .
+docker tag flask-demo:latest 071215964715.dkr.ecr.us-west-2.amazonaws.com/shs-common-backend:flask_client_demo_004
+docker push 071215964715.dkr.ecr.us-west-2.amazonaws.com/shs-common-backend:flask_client_demo_004
+```

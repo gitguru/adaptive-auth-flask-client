@@ -1,0 +1,18 @@
+FROM python:3.11-slim-buster
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+# CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+
+# Initialize database
+RUN flask --app flaskr init-db
+
+# Launch flask app, BTW this is not a recommented production launch
+CMD ["flask", "--app", "flaskr", "run", "--host=0.0.0.0", "--debug"]
